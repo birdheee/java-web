@@ -21,7 +21,6 @@ String url = "jdbc:mariadb://localhost:3306/kd";
 String userName = "root";
 String pwd = "kd1824java";
 Connection con = DriverManager.getConnection(url, userName, pwd);
-out.println("내가 나오면 에러는 없는거야");
 Statement stmt = con.createStatement();
 String sql = "SELECT * FROM BOARD_INFO";
 ResultSet rs = stmt.executeQuery(sql); // rs는 메타데이터와 실제데이터를 가지고 있음
@@ -39,14 +38,15 @@ ResultSet rs = stmt.executeQuery(sql); // rs는 메타데이터와 실제데이�
 	</tr>
 <%
 while(rs.next()){
-	out.println("<tr>");
-	out.println("<td>" + rs.getInt("BI_NUM") + "</td>");
-	out.println("<td>" + rs.getString("BI_TITLE") + "</td>");
-	out.println("<td>" + rs.getString("BI_CONTENT") + "</td>");
-	out.println("<td>" + rs.getString("BI_WRITER") + "</td>");
-	out.println("<td>" + rs.getString("BI_CREDAT") + "</td>");
-	out.println("<td>" + rs.getInt("BI_CNT") + "</td>");
-	out.println("</tr>");
+%>
+	<%= "<tr>" %>
+	<%= "<td>" + rs.getString("BI_NUM") + "</td>" %>
+	<%= "<td>" + rs.getString("BI_CONTENT") + "</td>" %>
+	<%= "<td>" + rs.getString("BI_WRITER") + "</td>" %>
+	<%= "<td>" + rs.getString("BI_CREDAT") + "</td>" %>
+	<%= "<td>" + rs.getInt("BI_CNT") + "</td>" %>
+	<%= "</tr>" %>
+<%
 }
 %>
 	<tr>

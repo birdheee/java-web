@@ -27,12 +27,14 @@ ResultSet rs = stmt.executeQuery(sql);
 		</tr>
 <%
 while(rs.next()){
-	out.println("<tr>");
-	out.println("<td>" + rs.getString("UI_NUM") + "</td>");
-	out.println("<td>" + rs.getString("UI_ID") + "</td>");
-	out.println("<td>" + rs.getString("UI_PWD") + "</td>");
-	out.println("<td>" + rs.getString("UI_NAME") + "</td>");
-	out.println("</tr>");
+%>
+	<%= "<tr>" %>
+	<%= "<td>" + rs.getString("UI_NUM") + "</td>" %>
+	<%= "<td>" + rs.getString("UI_ID") + "</td>" %>
+	<%= "<td>" + rs.getString("UI_PWD") + "</td>" %>
+	<%= "<td>" + rs.getString("UI_NAME") + "</td>" %>
+	<%= "</tr>" %>
+<%
 }
 %>
 	</table>
