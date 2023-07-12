@@ -41,6 +41,7 @@ while(rs.next()){
 %>
 	<%= "<tr>" %>
 	<%= "<td>" + rs.getString("BI_NUM") + "</td>" %>
+	<%= "<td>" + rs.getString("BI_TITLE") + "</td>" %>
 	<%= "<td>" + rs.getString("BI_CONTENT") + "</td>" %>
 	<%= "<td>" + rs.getString("BI_WRITER") + "</td>" %>
 	<%= "<td>" + rs.getString("BI_CREDAT") + "</td>" %>
