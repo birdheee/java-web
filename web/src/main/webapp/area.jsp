@@ -10,6 +10,5 @@
 <title>area.jsp</title>
 </head>
 <body>
-
 </body>
 </html>
