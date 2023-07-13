@@ -26,6 +26,7 @@ if(biTitle!=null && biTitle.length()!=0){
 %>
 <script>
 	alert("<%=biWriter%>님 게시물이 업로드 되었습니다.");
+	location.href="/web/board.jsp"
 </script>
 <%	
 	}

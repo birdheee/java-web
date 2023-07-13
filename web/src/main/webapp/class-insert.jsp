@@ -3,7 +3,6 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/include/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,6 @@
 <title>class insert</title>
 </head>
 <body>
-<a href="<%=root%>/class.jsp">Class</a>
 <%
 String ciName = request.getParameter("ciName");
 if(ciName!=null && ciName.length()!=0){
@@ -25,6 +23,7 @@ if(ciName!=null && ciName.length()!=0){
 %>
 <script>
 	alert("<%=ciName%>님 정보가 등록되었습니다.");
+	location.href="/web/class.jsp"
 </script>
 <%
 	}
