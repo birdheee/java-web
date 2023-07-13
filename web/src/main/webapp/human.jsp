@@ -21,7 +21,7 @@ Set<String> nameSet = new HashSet<>();
 
 while(nameSet.size()<5){
 	int rNum = ra.nextInt(5);
-	if(nameSet.add(names[rNum])){
+	if(nameSet.add(names[rNum])){ // boolean 형임
 		HumanVO human = new HumanVO();
 		human.setName(names[rNum]);
 		humanList.add(human);
