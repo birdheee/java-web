@@ -1,7 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
 <%@page import="com.web.common.DBCon"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/include/common.jsp" %>
@@ -9,33 +9,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클래스</title>
+<title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="/include/header.jsp"/>
-<table border="1">
-	<tr>
-		<td>번호</td>
-		<td>이름</td>
-		<td>설명</td>
-	</tr>
 <%
+String ciNum = request.getParameter("ciNum");
 Connection con = DBCon.getCon();
 Statement stmt = con.createStatement();
-String sql = "SELECT CI_NUM, CI_NAME, CI_DESC FROM CLASS_INFO";
+String sql = "SELECT CI_NUM, CI_NAME, CI_DESC FROM CLASS_INFO ";
+sql += " WHERE CI_NUM=" + ciNum;
 ResultSet rs = stmt.executeQuery(sql);
-while(rs.next()){
+if(!rs.next()){
 %>
-	<tr>
-		<td><%=rs.getInt("CI_NUM")%></td>
-		<td><a href="<%=root%>/class/class-view.jsp?ciNum=<%=rs.getInt("CI_NUM")%>"><%=rs.getString("CI_NAME")%></td>
-		<td><%=rs.getString("CI_DESC")%></td>
-	</tr>
-<%	
+<script>
+	alert('이미 삭제된 게시물입니다.');
+	history.back();
+</script>
+<%
+return;
 }
 %>
+<table border="1">
 	<tr>
-		<td colspan="3" align="right"><button onclick="location.href='/web/class/class-insert.jsp'">등록</button></td>
+		<th>이름</th>
+		<td><%=rs.getString("CI_NAME")%></td>
+	</tr>
+	<tr>
+		<th>설명</th>
+		<td><%=rs.getString("CI_DESC")%></td>
+	</tr>
+	<tr>
+		<th colspan="2"><button>수정</button> <button>삭제</button></th>
 	</tr>
 </table>
 </body>

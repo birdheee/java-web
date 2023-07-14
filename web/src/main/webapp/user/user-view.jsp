@@ -9,35 +9,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>유저</title>
+<title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="/include/header.jsp"/>
-<table border="1">
-	<tr>
-		<td>번호</td>
-		<td>아이디</td>
-		<td>패스워드</td>
-		<td>이름</td>
-	</tr>
 <%
+String uiNum = request.getParameter("uiNum");
 Connection con = DBCon.getCon();
 Statement stmt = con.createStatement();
-String sql = "SELECT UI_NUM, UI_ID, UI_PWD, UI_NAME FROM USER_INFO";
+String sql = "SELECT UI_NUM, UI_ID, UI_PWD, UI_NAME FROM USER_INFO ";
+sql += " WHERE UI_NUM=" + uiNum;
 ResultSet rs = stmt.executeQuery(sql);
-while(rs.next()){
+if(!rs.next()){
 %>
-	<tr>
-		<td><%=rs.getInt("UI_NUM")%></td>
-		<td><a href="<%=root%>/user/user-view.jsp?uiNum=<%=rs.getInt("UI_NUM")%>"><%=rs.getString("UI_ID")%></td>
-		<td><%=rs.getString("UI_PWD")%></td>
-		<td><%=rs.getString("UI_NAME") %></td>
-	</tr>
-<%	
+<script>
+	alert('이미 삭제된 사용자입니다.');
+	history.back();
+</script>
+<%
+return;
 }
 %>
+<table border="1">
 	<tr>
-		<td colspan="4" align="right"><button onclick="location.href='/web/user/user-insert.jsp'">등록</button></td>
+		<th>아이디</th>
+		<td><%=rs.getString("UI_ID")%></td>
+	</tr>
+	<tr>
+		<th>패스워드</th>
+		<td><%=rs.getString("UI_PWD")%></td>
+	</tr>
+	<tr>
+		<th>이름</th>
+		<td><%=rs.getString("UI_NAME")%></td>
+	</tr>
+	<tr>
+		<th colspan="2"><button>수정</button> <button>삭제</button></th>
 	</tr>
 </table>
 </body>
