@@ -30,7 +30,7 @@
 <%
 Connection con = DBCon.getCon();
 String sql = "SELECT BI.*, UI.UI_NAME FROM BOARD_INFO BI";
-sql += " INNER JOIN USER_INFO UI ON BI.BI_WRITER = UI.UI_NUM WHERE 1=1 ";
+sql += " INNER JOIN UI_INFO UI ON BI.BI_WRITER = UI.UI_NUM WHERE 1=1 ";
 String biTitle = request.getParameter("biTitle")==null?"":request.getParameter("biTitle");
 String biWriter = request.getParameter("biWriter")==null?"":request.getParameter("biWriter");
 String biContent = request.getParameter("biContent")==null?"":request.getParameter("biContent");
@@ -48,6 +48,7 @@ if(!biContent.isEmpty()){
 	cnt++;
 }
 PreparedStatement pstmt = con.prepareStatement(sql);
+
 if(!biContent.isEmpty()){
 	pstmt.setString(cnt--,biContent);
 }
