@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/include/header.jsp"/>
 <%
 String miNum = request.getParameter("miNum");
 String miTitle = request.getParameter("miTitle");
@@ -29,14 +30,19 @@ pstmt.setString(4, miCnt);
 pstmt.setString(5, miDesc);
 pstmt.setString(6, miNum);
 int result = pstmt.executeUpdate();
-if(result==1){
+if(result!=1){
 %>
-<script>
-	alert('수정 완료');
-	location.href='/web/movie/movie-view.jsp?miNum=<%=miNum%>';
-</script>
+	<script>
+		alert('이미 삭제된 항목입니다.');
+		location.href='/web/movie2/movie-list.jsp';
+	</script>
 <%
+return;
 }
 %>
+<script>
+	alert('수정되었습니다.');
+	location.href='/web/movie2/movie2-view.jsp?miNum=<%=miNum%>';
+</script>
 </body>
 </html>

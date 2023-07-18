@@ -23,24 +23,24 @@
 	</tr>
 <%
 Connection con = DBCon.getCon();
-String sql = "SELECT MI_NUM, MI_TITLE, MI_DESC, MI_GENRE, DATE_FORMAT(MI_CREDAT, '%Y-%m-%d') MI_CREDAT, MI_CNT FROM MOVIE_INFO";
+String sql = "SELECT MI_NUM, MI_TITLE, MI_GENRE, DATE_FORMAT(MI_CREDAT, '%Y-%m-%d') MI_CREDAT, MI_CNT FROM MOVIE_INFO;";
 Statement stmt = con.createStatement();
 ResultSet rs = stmt.executeQuery(sql);
 while(rs.next()){
 %>
 	<tr>
-		<td><%=rs.getInt("MI_NUM")%></td>
-		<td><a href="<%=root%>/movie/movie-view.jsp?miNum=<%=rs.getString("MI_NUM")%>"><%=rs.getString("MI_TITLE")%></td>
+		<td><%=rs.getString("MI_NUM")%></td>
+		<td><a href="<%=root%>/movie2/movie2-view.jsp?miNum=<%=rs.getString("MI_NUM")%>"><%=rs.getString("MI_TITLE")%></td>
 		<td><%=rs.getString("MI_GENRE")%></td>
 		<td><%=rs.getString("MI_CREDAT")%></td>
-		<td><%=rs.getInt("MI_CNT")%></td>
-		<td><button onclick="location.href='<%=root%>/movie/movie-delete-ok.jsp?miNum=<%=rs.getInt("MI_NUM")%>'">삭제</button></td>
+		<td><%=rs.getString("MI_CNT")%></td>
+		<td><button onclick="location.href='<%=root%>/movie2/movie2-delete-ok.jsp?miNum=<%=rs.getString("MI_NUM")%>'">삭제</button></td>
 	</tr>
-<%
+<%	
 }
 %>
 	<tr>
-		<td colspan="6" align="right" onclick="location.href='/web/movie/movie-insert.jsp'"><button>등록</button></td>
+		<td colspan="6" align="right"><button onclick="location.href='<%=root%>/movie2/movie2-insert.jsp'">등록</button></td>
 	</tr>
 </table>
 </body>
