@@ -24,6 +24,7 @@ public class MapTest {
 		strList.add("우리");
 		strList.add("지금");
 		strList.add("나라");
+		
 		setAttribute("strList", strList);
 		Object obj = getAttribute("strList");
 		
